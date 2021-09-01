@@ -18,4 +18,11 @@ public class UserRegistrationTest {
         boolean result = validator.validateLastName("Nimbekar");
         Assertions.assertTrue(result);
     }
+
+    @Test
+    void givenEmailId_WhenProper_ShouldReturnTure() {
+        UserRegistration validator = new UserRegistration();
+        boolean result = validator.validateEmailId("abc.xyz@bl.co.in");
+        Assertions.assertTrue(result);
+    }
 }
