@@ -13,6 +13,20 @@ public class UserRegistrationTest {
     }
 
     @Test
+    void givenWrongFirstName_WhenImproper_ShouldReturnFalse() {
+        UserRegistration validator = new UserRegistration();
+        boolean result = validator.validateFirstName("Av");
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+     void givenFirstName_WhenImproper_ShouldReturnFalse() {
+        UserRegistration validator = new UserRegistration();
+        boolean result = validator.validateFirstName("aviral");
+        Assertions.assertFalse(result);
+    }
+
+    @Test
     void givenLastName_WhenProper_ShouldReturnTure() {
         UserRegistration validator = new UserRegistration();
         boolean result = validator.validateLastName("Nimbekar");
@@ -27,6 +41,13 @@ public class UserRegistrationTest {
     }
 
     @Test
+    void givenEmailId_WhenImproper_ShouldReturnFalse() {
+        UserRegistration validator = new UserRegistration();
+        boolean result = validator.validateEmailId("ab@c.xyz@bl.co.in");
+        Assertions.assertFalse(result);
+    }
+
+    @Test
     void givenMobileNo_WhenProper_ShouldReturnTure() {
         UserRegistration validator = new UserRegistration();
         boolean result = validator.validateMobileNo("91 1112223344");
@@ -34,9 +55,23 @@ public class UserRegistrationTest {
     }
 
     @Test
+    void givenMobileNo_WhenImproper_ShouldReturnFalse() {
+        UserRegistration validator = new UserRegistration();
+        boolean result = validator.validateMobileNo("911112223344");
+        Assertions.assertFalse(result);
+    }
+
+    @Test
     void givenPassword_WhenProper_ShouldReturnTure() {
         UserRegistration validator = new UserRegistration();
-        boolean result = validator.validatePassword("@ho%WaRe8you");
+        boolean result = validator.validatePassword("@hoWaRe8you");
         Assertions.assertTrue(result);
+    }
+
+    @Test
+    void givenPassword_WhenImproper_ShouldReturnFalse() {
+        UserRegistration validator = new UserRegistration();
+        boolean result = validator.validatePassword("@ho%w4areyou");
+        Assertions.assertFalse(result);
     }
 }
