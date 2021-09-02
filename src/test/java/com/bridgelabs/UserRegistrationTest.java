@@ -36,7 +36,7 @@ public class UserRegistrationTest {
     @Test
     void givenPassword_WhenProper_ShouldReturnTure() {
         UserRegistration validator = new UserRegistration();
-        boolean result = validator.validatePassword("howArEyou");
+        boolean result = validator.validatePassword("how5ArEyou");
         Assertions.assertTrue(result);
     }
 }

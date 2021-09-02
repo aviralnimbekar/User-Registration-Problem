@@ -8,7 +8,7 @@ public class UserRegistration {
     private static final String LAST_NAME_PATTERN = "^[A-Z][a-z]{2,}";
     private static final String EMAIL_ID_PATTERN = "^[a-zA-Z0-9]+([.][a-zA-Z0-9]).*@[a-z]+[.]+[a-z]{2,3}([.][a-z]).*$";
     private static final String MOBILE_NUMBER_PATTERN = "^91 [1-9][0-9]{9}";
-    private static final String PASSWORD_PATTERN = "(?=.*[A-Z])[a-zA-Z0-9]{8,}";
+    private static final String PASSWORD_PATTERN = "(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}";
 
     public boolean validateFirstName(String firstName) {
         Pattern pattern = Pattern.compile(FIRST_NAME_PATTERN);
