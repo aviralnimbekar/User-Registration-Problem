@@ -102,7 +102,7 @@ public class UserRegistrationTest {
     void givenDetails_WhenImproper_ShouldReturnSAD() {
         UserRegistration validator = new UserRegistration();
         try {
-            validator.validatedUserRegistration("Av", "Nimbekar", "abc@gmail.co",
+            validator.validatedUserRegistration("Aviral", "Nimbekar", "ab%c@gmail.co",
                     "91 9988776610", "@how6AreYou");
         } catch (InvalidDetailException e) {
             System.out.println("Detail INVALID !!!");
