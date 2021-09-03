@@ -74,4 +74,20 @@ public class UserRegistrationTest {
         boolean result = validator.validatePassword("@ho%w4areyou");
         Assertions.assertFalse(result);
     }
+
+    @Test
+    void givenDetails_WhenProper_ShouldReturnHAPPY() {
+        UserRegistration validator = new UserRegistration();
+        String result = validator.validatedUserRegistration("Aviral","Nimbekar","abc@gmail.co",
+                "91 9988776610","@how6AreYou");
+        Assertions.assertEquals("HAPPY",result);
+    }
+
+    @Test
+    void givenDetails_WhenImproper_ShouldReturnSAD() {
+        UserRegistration validator = new UserRegistration();
+        String result = validator.validatedUserRegistration("Av","Nimbekar","abc@gmail.co",
+                "91 9988776610","@how6AreYou");
+        Assertions.assertEquals("SAD",result);
+    }
 }

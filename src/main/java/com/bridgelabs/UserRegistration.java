@@ -34,4 +34,12 @@ public class UserRegistration {
         Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
         return pattern.matcher(password).matches();
     }
+
+    public String validatedUserRegistration(String firstName, String lastName,
+                                            String emailId, String mobileNo, String password) {
+        if (validateFirstName(firstName) && validateLastName(lastName) &&
+                validateEmailId(emailId) && validateMobileNo(mobileNo) && validatePassword(password))
+            return "HAPPY";
+        return "SAD";
+    }
 }
