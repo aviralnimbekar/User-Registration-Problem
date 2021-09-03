@@ -12,27 +12,44 @@ public class UserRegistration {
 
     public boolean validateFirstName(String firstName) {
         Pattern pattern = Pattern.compile(FIRST_NAME_PATTERN);
-        return pattern.matcher(firstName).matches();
+
+        if (!pattern.matcher(firstName).matches())
+            throw new InvalidDetailException("First Name INVALID !!!", InvalidDetailException.ExceptionType.INVALID_FIRST_NAME);
+
+        return true;
     }
 
     public boolean validateLastName(String lastName) {
         Pattern pattern = Pattern.compile(LAST_NAME_PATTERN);
-        return pattern.matcher(lastName).matches();
+
+        if (!pattern.matcher(lastName).matches())
+            throw new InvalidDetailException("Last Name INVALID !!!", InvalidDetailException.ExceptionType.INVALID_LAST_NAME);
+
+        return true;
     }
 
     public boolean validateEmailId(String emailId) {
         Pattern pattern = Pattern.compile(EMAIL_ID_PATTERN);
-        return pattern.matcher(emailId).matches();
+        if (!pattern.matcher(emailId).matches())
+            throw new InvalidDetailException("Email ID INVALID !!!", InvalidDetailException.ExceptionType.INVALID_EMAIL_ID);
+
+        return true;
     }
 
     public boolean validateMobileNo(String mobileNo) {
         Pattern pattern = Pattern.compile(MOBILE_NUMBER_PATTERN);
-        return pattern.matcher(mobileNo).matches();
+        if (!pattern.matcher(mobileNo).matches())
+            throw new InvalidDetailException("Mobile Number INVALID !!!", InvalidDetailException.ExceptionType.INVALID_MOBILE_NUMBER);
+
+        return true;
     }
 
     public boolean validatePassword(String password) {
         Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-        return pattern.matcher(password).matches();
+        if (!pattern.matcher(password).matches())
+            throw new InvalidDetailException("Password INVALID !!!", InvalidDetailException.ExceptionType.INVALID_PASSWORD);
+
+        return true;
     }
 
     public String validatedUserRegistration(String firstName, String lastName,

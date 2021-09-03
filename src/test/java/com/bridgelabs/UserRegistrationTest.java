@@ -13,17 +13,13 @@ public class UserRegistrationTest {
     }
 
     @Test
-    void givenWrongFirstName_WhenImproper_ShouldReturnFalse() {
-        UserRegistration validator = new UserRegistration();
-        boolean result = validator.validateFirstName("Av");
-        Assertions.assertFalse(result);
-    }
-
-    @Test
-     void givenFirstName_WhenImproper_ShouldReturnFalse() {
-        UserRegistration validator = new UserRegistration();
-        boolean result = validator.validateFirstName("aviral");
-        Assertions.assertFalse(result);
+    void givenFirstName_WhenImproper_ShouldReturnInvalidMessageToUser() {
+        try {
+            new UserRegistration().validateFirstName("Av");
+        } catch (InvalidDetailException e) {
+            Assertions.assertEquals(InvalidDetailException.ExceptionType.INVALID_FIRST_NAME, e.type);
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
@@ -34,6 +30,16 @@ public class UserRegistrationTest {
     }
 
     @Test
+    void givenLastName_WhenImproper_ShouldReturnInvalidMessageToUser() {
+        try {
+            new UserRegistration().validateLastName("nimbekar");
+        } catch (InvalidDetailException e) {
+            Assertions.assertEquals(InvalidDetailException.ExceptionType.INVALID_LAST_NAME, e.type);
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
     void givenEmailId_WhenProper_ShouldReturnTure() {
         UserRegistration validator = new UserRegistration();
         boolean result = validator.validateEmailId("abc.xyz@bl.co.in");
@@ -41,10 +47,13 @@ public class UserRegistrationTest {
     }
 
     @Test
-    void givenEmailId_WhenImproper_ShouldReturnFalse() {
-        UserRegistration validator = new UserRegistration();
-        boolean result = validator.validateEmailId("ab@c.xyz@bl.co.in");
-        Assertions.assertFalse(result);
+    void givenEmailId_WhenImproper_ShouldReturnInvalidMessageToUser() {
+        try {
+            new UserRegistration().validateEmailId("ab@c.xyz@bl.co.in");
+        } catch (InvalidDetailException e) {
+            Assertions.assertEquals(InvalidDetailException.ExceptionType.INVALID_EMAIL_ID, e.type);
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
@@ -55,10 +64,13 @@ public class UserRegistrationTest {
     }
 
     @Test
-    void givenMobileNo_WhenImproper_ShouldReturnFalse() {
-        UserRegistration validator = new UserRegistration();
-        boolean result = validator.validateMobileNo("911112223344");
-        Assertions.assertFalse(result);
+    void givenMobileNo_WhenImproper_ShouldReturnInvalidMessageToUser() {
+        try {
+            new UserRegistration().validateMobileNo("813311477779");
+        } catch (InvalidDetailException e) {
+            Assertions.assertEquals(InvalidDetailException.ExceptionType.INVALID_MOBILE_NUMBER, e.type);
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
@@ -69,25 +81,31 @@ public class UserRegistrationTest {
     }
 
     @Test
-    void givenPassword_WhenImproper_ShouldReturnFalse() {
-        UserRegistration validator = new UserRegistration();
-        boolean result = validator.validatePassword("@ho%w4areyou");
-        Assertions.assertFalse(result);
+    void givenPassword_WhenImproper_ShouldReturnInvalidMessageToUser() {
+        try {
+            new UserRegistration().validatePassword("12345678");
+        } catch (InvalidDetailException e) {
+            Assertions.assertEquals(InvalidDetailException.ExceptionType.INVALID_PASSWORD, e.type);
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
     void givenDetails_WhenProper_ShouldReturnHAPPY() {
         UserRegistration validator = new UserRegistration();
-        String result = validator.validatedUserRegistration("Aviral","Nimbekar","abc@gmail.co",
-                "91 9988776610","@how6AreYou");
-        Assertions.assertEquals("HAPPY",result);
+        String result = validator.validatedUserRegistration("Aviral", "Nimbekar", "abc@gmail.co",
+                "91 9988776610", "@how6AreYou");
+        Assertions.assertEquals("HAPPY", result);
     }
 
     @Test
     void givenDetails_WhenImproper_ShouldReturnSAD() {
         UserRegistration validator = new UserRegistration();
-        String result = validator.validatedUserRegistration("Av","Nimbekar","abc@gmail.co",
-                "91 9988776610","@how6AreYou");
-        Assertions.assertEquals("SAD",result);
+        try {
+            validator.validatedUserRegistration("Av", "Nimbekar", "abc@gmail.co",
+                    "91 9988776610", "@how6AreYou");
+        } catch (InvalidDetailException e) {
+            System.out.println("Detail INVALID !!!");
+        }
     }
 }
