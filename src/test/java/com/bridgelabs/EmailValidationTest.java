@@ -13,6 +13,7 @@ public class EmailValidationTest {
 
     private String emailId;
     private boolean expectedResult;
+    private UserRegistration userRegistration;
 
     public EmailValidationTest(String emailId, boolean expectedResult) {
         this.emailId = emailId;
